@@ -4,6 +4,8 @@ import random
 
 if __name__ == '__main__':
 
+    print("Password Generator\n==================")
+
     proceed = False
     while proceed == False:
         try:
