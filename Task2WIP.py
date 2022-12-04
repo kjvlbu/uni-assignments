@@ -4,19 +4,20 @@ from statistics import mean
 
 if __name__ == '__main__':
 
-    print("Poppleton Park Run Timer\n~~~~~~~~~~~~~~~~~~~~~~~~\nLet's Go!")
+    print("Park Run Timer\n~~~~~~~~~~~~~~\n\nLet's go!")
 
     runner_list = []
     time_list = []
 
-    while True:
-        data = (input("> "))
+    while 1:
+        data = input("> ")
+        runner_info = data.split("::")
+        listlengths = len(runner_info)
         if data == "END" and len(time_list) == 0:
-            print("No data found.")
-        elif data == "END":
-            print("Total Runners: ", len(runner_list))
-            print("Average Time: ", mean(time_list))
-            print("Fastest Time: ", min(time_list))
-            print("Slowest Time: ", max(time_list))
-            print("Best Time Here: Runner #", runner_list[time_list.index(min(time_list))])
-        break
+            print("Error. No data found.")
+        elif listlengths != 2 or runner_info[0] == "" or runner_info[1] == "":
+            print("Error in data stream. Ignoring. Proceed.")
+        else:
+            runner_list.append(runner_info[0])
+            time_list.append(runner_info[1])
+    
