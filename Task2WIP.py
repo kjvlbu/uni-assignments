@@ -13,11 +13,12 @@ if __name__ == '__main__':
         data = input("> ")
         runner_info = data.split("::")
         listlengths = len(runner_info)
-        if data == "END" and len(time_list) == 0:
+        if data == "END" and listlengths == 1:
             print("Error. No data found.")
         elif listlengths != 2 or runner_info[0] == "" or runner_info[1] == "":
-            print("Error in data stream. Ignoring. Proceed.")
+            print("Error in data stream. Ignoring, please proceed.")
+            break
         else:
-            runner_list.append(runner_info[0])
-            time_list.append(runner_info[1])
-    
+            if data == "END":
+                runner_list.append(runner_info[0])
+                time_list.append(runner_info[1])
