@@ -31,8 +31,8 @@ if __name__ == '__main__':
             runner_list.append(int(runner_info[0]))
             time_list.append(int(runner_info[1]))
 
-print("Total Runners:", len(runner_list))
-print("Average Time:", convert(mean(time_list)))
-print("Fastest Time:", convert(min(time_list)))
-print("Slowest Time:", convert(max(time_list)))
-print("Best Time Here: Runner #", runner_list[time_list.index(min(time_list))])
+    print("Total Runners:", len(runner_list))
+    print("Average Time:", convert(mean(time_list)))
+    print("Fastest Time:", convert(min(time_list)))
+    print("Slowest Time:", convert(max(time_list)))
+    print("Best Time Here: Runner #", runner_list[time_list.index(min(time_list))])
