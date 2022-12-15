@@ -1,34 +1,33 @@
-#!usr/bin/env python3
+#!/usr/bin/env python3
 
-import sys
 import random
-
+import sys
+import re
 
 if __name__ == '__main__':
 
-    ucas_num = []
-    stu_initial = []
-    last_name = []
-
     try:
-        with open("students.txt", 'r') as f:
-            students = f.readlines()
+        with open("students.txt", 'r') as f0:
+            students = f0.readlines()
 
-        with open("student_emails.txt", 'w') as f:
+        with open("student_emails.txt", 'w') as f1:
             for student in students:
 
-                stu_family_name = student.split(", ")
+                ucas_num = student[:8]
+                initial = student[9]
+                surname = re.sub(r"[^a-zA-Z/s]", "", student.split(", ")[1])
+                rand_num = random.randint(1000, 9999)
 
-                ucas_num.append(student[:8])
-                stu_initial.append(student[9])
-                last_name.append(stu_family_name[1])
-                random_number = random.randint(1000, 9999)
+                emails = f"{initial}.{surname}{rand_num}@poppleton.ac.uk"
 
-                stu_email = f"{stu_initial}.{last_name}{random_number}@poppleton.ac.uk"
+                f1.write(ucas_num + " " + emails.lower() + "\n")
 
-                f.write(ucas_num + stu_email.lower())
+        f0.close()
+        f1.close()
+
+        print("Success! Process completed.")
 
     except FileNotFoundError:
-        print("Error: File cannot be located.")
+        print("Error. File cannot be located")
 
         sys.exit(1)
