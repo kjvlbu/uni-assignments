@@ -13,9 +13,13 @@ if __name__ == '__main__':
         with open("student_emails.txt", 'w') as f1:
             for student in students:
 
+                full_name = student[9:]
+                name_split = full_name.split(", ")
+                first_name = name_split[1]
+
                 ucas_num = student[:8]
-                initial = student[9]
-                surname = re.sub(r"[^a-zA-Z/s]", "", student.split(", ")[1])
+                initial = first_name[0]
+                surname = re.sub(r"[^a-zA-Z]", "", name_split[0])
                 rand_num = random.randint(1000, 9999)
 
                 emails = f"{initial}.{surname}{rand_num}@poppleton.ac.uk"
